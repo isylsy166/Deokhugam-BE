@@ -32,7 +32,7 @@ CREATE TABLE reviews (
     id bigint NOT NULL  primary key,
     user_id bigint NOT NULL,
     book_id bigint NOT NULL,
-    content varchar(1024) NULL,
+    content TEXT NULL,
     rating integer NOT NULL,
     created_at timestamp NULL,
     updated_at timestamp NULL,
@@ -44,7 +44,7 @@ CREATE TABLE notifications (
     review_id bigint NULL,
     user_id bigint NOT NULL,
     type varchar(10) NULL,
-    content varchar(1024) NULL,
+    content TEXT NULL,
     confirmed boolean NULL,
     created_at timestamp NULL,
     updated_at timestamp NULL
@@ -54,7 +54,7 @@ CREATE TABLE comments (
     id bigint NOT NULL  PRIMARY KEY ,
     user_id bigint NOT NULL,
     review_id bigint NOT NULL,
-    content varchar(1024) NOT NULL,
+    content TEXT NOT NULL,
     created_at timestamp NOT NULL,
     updated_at timestamp NULL,
     deleted_at timestamp NULL
@@ -62,13 +62,13 @@ CREATE TABLE comments (
 
 CREATE TABLE books (
     id bigint NOT NULL  PRIMARY KEY ,
+    isbn varchar(1024) NULL,
     title varchar(256) NULL,
     author varchar(256) NULL,
-    description varchar(1024) NULL,
+    description TEXT NULL,
+    thumbnail_url varchar(1024) NULL,
     publisher varchar(256) NULL,
     published_at timestamp NULL,
-    isbn varchar(1024) NULL,
-    thumbnail_url varchar(1024) NULL,
     created_at timestamp NULL,
     updated_at timestamp NULL,
     deleted_at timestamp NULL,
@@ -80,10 +80,10 @@ CREATE TABLE rank_snapshot (
     target_type varchar(255) NULL,
     target_id varchar(255) NULL,
     period_type varchar(255) NULL,
-    period_start varchar(255) NULL,
-    period_end varchar(255) NULL,
+    period_start timestamp NULL,
+    period_end timestamp NULL,
     rank_no varchar(255) NULL,
-    score varchar(255) NULL,
+    score numeric(10,2) NULL,
     created_at varchar(255) NULL
 );
 
