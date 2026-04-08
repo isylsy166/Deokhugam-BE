@@ -11,6 +11,7 @@ dependencies {
 
     // security
     implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.bouncycastle:bcprov-jdk18on:1.81'
     testImplementation 'org.springframework.security:spring-security-test'
 
     // oauth2

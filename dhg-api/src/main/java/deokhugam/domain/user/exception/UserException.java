@@ -1,6 +1,6 @@
 package deokhugam.domain.user.exception;
 
-import com.mopl.global.exception.DomainException;
+import deokhugam.global.exception.DomainException;
 import lombok.Getter;
 
 @Getter
