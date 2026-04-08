@@ -1,0 +1,6 @@
+rootProject.name = 'Deokhugam-Backend'
+
+include 'dhg-persistence'
+include 'dhg-api'
+include 'dhg-batch'
+include 'dhg-infra'

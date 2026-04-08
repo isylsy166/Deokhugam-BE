@@ -1,0 +1,17 @@
+services:
+  postgresql:
+    image: postgres:16-alpine
+    container_name: deokhugam-dev-postgresql
+    restart: unless-stopped               #재시작되거나 컨테이너가 죽으면 다시 자동으로 띄움
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: deokhugam
+      POSTGRES_USER: deokhugam
+      POSTGRES_PASSWORD: dhg1234^^
+      TZ: Asia/Seoul
+    volumes:
+      - postgresql_data:/var/lib/postgresql/data
+
+volumes:
+  postgresql_data:
