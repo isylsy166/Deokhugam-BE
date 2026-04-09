@@ -1,33 +1,34 @@
 services:
   redis:
+    #Redis 7.2 버전의 Alpine 기반 경량 이미지
     image: redis:7.2-alpine
     container_name: deokhugam-redis
+    # 재시작되거나 컨테이너가 죽었을 때 자동으로 다시 띄움, 사용자가 명시적으로 중지한 경우에는 자동 재시작하지 않음
     restart: unless-stopped
+    # 컨테이너가 사용할 수 있는 메모리 상한을 1.5GB로 제한
     mem_limit: 1500m
 
     ports:
       - "6379:6379"
 
+    # 컨테이너 내부 /data 디렉터리를 현재 프로젝트의 redis_data 폴더와 연결
     volumes:
       - ./redis_data:/data
 
+    # 기본 실행 명령 대신 Redis 서버를 아래 옵션으로 실행
+    # --appendonly yes: AOF(Append Only File) 영속화 사용
+    # --appendfsync everysec: AOF를 1초마다 디스크에 flush
+    # --maxmemory 1024mb: Redis가 사용할 최대 메모리를 1GB로 제한
+    # --maxmemory-policy allkeys-lru: TTL 유무와 상관없이 전체 키 중 오래 안 쓴 키부터 제거
     command: >
       redis-server
       --appendonly yes
       --appendfsync everysec
       --maxmemory 1024mb
-      --maxmemory-policy volatile-lru
-      --protected-mode no 
+      --maxmemory-policy allkeys-lru
 
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-
-    networks:
-      - app-network
-
-networks:
-  app-network:
-    driver: bridge
+      interval: 10s     # 10초마다 검사
+      timeout: 5s       # 5초안에 응답이 없으면 실패
+      retries: 5        # 5번 까지 재시도
