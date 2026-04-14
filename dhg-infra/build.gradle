@@ -15,6 +15,7 @@ dependencies{
     // Redis
     api 'org.springframework.boot:spring-boot-starter-data-redis'
     implementation 'org.apache.commons:commons-pool2'
+    implementation 'org.springframework.session:spring-session-data-redis'
 
     // AWS S3
     implementation platform("software.amazon.awssdk:bom:2.26.21")

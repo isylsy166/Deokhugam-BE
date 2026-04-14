@@ -4,7 +4,7 @@ plugins {
 
 dependencies {
     implementation project(':dhg-persistence')
-//    implementation project(':dhg-infra')
+    implementation project(':dhg-infra')
 
     // web
     implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -12,6 +12,7 @@ dependencies {
     // security
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.bouncycastle:bcprov-jdk18on:1.81'
+    implementation 'org.springframework.session:spring-session-data-redis'
     testImplementation 'org.springframework.security:spring-security-test'
 
     // oauth2
