@@ -28,6 +28,14 @@ public class UserService {
         return toDto(createdUser);
     }
 
+    public UserDto findByEmail(String email) {
+        User user = userRepository.findByEmail(email)
+            .orElseThrow(() -> new UserException(UserErrorCode.USER_NOT_EXIST));
+
+        return toDto(user);
+    }
+
+    /** 이메일 & 닉네임 중복 확인 */
     private void checkDuplicateEmailAndNickname(String email, String nickname) {
         Optional<User> userByEmail = userRepository.findByEmail(email);
         if (userByEmail.isPresent()) {
